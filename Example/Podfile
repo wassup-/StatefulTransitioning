@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'StatefulTransitioning_Example' do
+  pod 'StatefulTransitioning', :path => '../'
+
+  target 'StatefulTransitioning_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
