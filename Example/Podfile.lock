@@ -1,0 +1,16 @@
+PODS:
+  - StatefulTransitioning (0.1.0)
+
+DEPENDENCIES:
+  - StatefulTransitioning (from `../`)
+
+EXTERNAL SOURCES:
+  StatefulTransitioning:
+    :path: ../
+
+SPEC CHECKSUMS:
+  StatefulTransitioning: b13e1fa9b1c35fae2b5154fb516acb5a50e83cdf
+
+PODFILE CHECKSUM: a6fcd42dfe1978e31371ec4c6ead0f52b957183f
+
+COCOAPODS: 1.4.0

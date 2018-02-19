@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EmptyView" customModule="StatefulTransitioning" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Oa-ys-3dP">
+                    <rect key="frame" x="32" y="257" width="311" height="173"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="500" verticalHuggingPriority="500" image="ic_empty" translatesAutoresizingMaskIntoConstraints="NO" id="Bqr-ao-9LE">
+                            <rect key="frame" x="112.5" y="0.0" width="86" height="86"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Bqr-ao-9LE" secondAttribute="height" multiplier="1:1" id="WbS-xq-9bC"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="550" text="All done!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcI-Kg-JHo">
+                            <rect key="frame" x="0.0" y="118" width="311" height="21"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="550" text="Clear screens ahead" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2e-wx-ebs">
+                            <rect key="frame" x="0.0" y="155" width="311" height="18"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="N2e-wx-ebs" firstAttribute="leading" secondItem="2Oa-ys-3dP" secondAttribute="leading" id="50C-dp-nuu"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bqr-ao-9LE" secondAttribute="trailing" id="ATV-cQ-SUl"/>
+                        <constraint firstItem="Bqr-ao-9LE" firstAttribute="top" secondItem="2Oa-ys-3dP" secondAttribute="top" id="LBs-RS-vos"/>
+                        <constraint firstItem="Bqr-ao-9LE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Oa-ys-3dP" secondAttribute="leading" id="Mc1-I0-X9N"/>
+                        <constraint firstItem="PcI-Kg-JHo" firstAttribute="top" secondItem="Bqr-ao-9LE" secondAttribute="bottom" constant="32" id="VT9-Oc-r0d"/>
+                        <constraint firstAttribute="trailing" secondItem="PcI-Kg-JHo" secondAttribute="trailing" id="aot-FW-PTT"/>
+                        <constraint firstItem="Bqr-ao-9LE" firstAttribute="centerX" secondItem="2Oa-ys-3dP" secondAttribute="centerX" id="bhj-II-Fa6"/>
+                        <constraint firstItem="PcI-Kg-JHo" firstAttribute="leading" secondItem="2Oa-ys-3dP" secondAttribute="leading" id="caY-XL-dJO"/>
+                        <constraint firstItem="N2e-wx-ebs" firstAttribute="top" secondItem="PcI-Kg-JHo" secondAttribute="bottom" constant="16" id="dny-nJ-dKz"/>
+                        <constraint firstAttribute="trailing" secondItem="N2e-wx-ebs" secondAttribute="trailing" id="kcs-v0-YSZ"/>
+                        <constraint firstAttribute="bottom" secondItem="N2e-wx-ebs" secondAttribute="bottom" id="sxB-Aa-X1X"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2Oa-ys-3dP" secondAttribute="trailing" priority="500" constant="32" id="5wS-4y-nhl"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Oa-ys-3dP" secondAttribute="trailing" id="DMB-fd-Lua"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2Oa-ys-3dP" secondAttribute="bottom" id="EVK-wH-Dy3"/>
+                <constraint firstItem="2Oa-ys-3dP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="500" constant="32" id="IBc-qi-gKs"/>
+                <constraint firstItem="2Oa-ys-3dP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="top" id="WDR-1Q-QCK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2Oa-ys-3dP" secondAttribute="bottom" priority="500" constant="32" id="XRu-Ow-ocC"/>
+                <constraint firstItem="2Oa-ys-3dP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZJg-Yr-i7X"/>
+                <constraint firstItem="2Oa-ys-3dP" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="vcw-ph-IIA"/>
+                <constraint firstItem="2Oa-ys-3dP" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="wjg-P0-plN"/>
+                <constraint firstItem="2Oa-ys-3dP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" priority="500" constant="32" id="yo0-WM-1OC"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="imageView" destination="Bqr-ao-9LE" id="Gla-M9-odA"/>
+                <outlet property="subtitleLabel" destination="N2e-wx-ebs" id="njf-QL-45y"/>
+                <outlet property="titleLabel" destination="PcI-Kg-JHo" id="p76-Rf-cXR"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_empty" width="86" height="86"/>
+    </resources>
+</document>

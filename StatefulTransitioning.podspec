@@ -1,42 +1,29 @@
-#
-# Be sure to run `pod lib lint StatefulTransitioning.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = 'StatefulTransitioning'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of StatefulTransitioning.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+  s.summary          = 'iOS view controller state transitioning.'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+iOS view controller state transitioning.
                        DESC
 
-  s.homepage         = 'https://github.com/Tom Knapen/StatefulTransitioning'
+  s.homepage         = 'https://github.com/wassup-/StatefulTransitioning'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Tom Knapen' => 'tom@appwise.be' }
-  s.source           = { :git => 'https://github.com/Tom Knapen/StatefulTransitioning.git', :tag => s.version.to_s }
+  s.author           = { 'Tom Knapen' => 'tom.knapen@appwise.be' }
+  s.source           = { :git => 'https://github.com/wassup-/StatefulTransitioning.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.platform = :ios, '9.0'
 
-  s.source_files = 'StatefulTransitioning/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'StatefulTransitioning' => ['StatefulTransitioning/Assets/*.png']
-  # }
+  s.source_files = 'Sources/**/*.swift'
+  s.resource_bundles = {
+    'StatefulTransitioning' => ['Resources/*.xcassets', 'Resources/*.xib']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+
+  s.swift_version = '4.0'
 end

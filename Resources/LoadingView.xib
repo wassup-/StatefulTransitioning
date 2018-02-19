@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="lzS-5f-gxQ" customClass="LoadingView" customModule="StatefulTransitioning" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZt-Px-HkS">
+                    <rect key="frame" x="141" y="290" width="92" height="107"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIA-Iq-lNq">
+                            <rect key="frame" x="0.0" y="0.0" width="92" height="20"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="b8x-Tn-BcT">
+                                    <rect key="frame" x="0.0" y="0.0" width="92" height="20"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="b8x-Tn-BcT" secondAttribute="bottom" id="8wN-EX-xg8"/>
+                                <constraint firstAttribute="trailing" secondItem="b8x-Tn-BcT" secondAttribute="trailing" id="nNZ-f4-4k7"/>
+                                <constraint firstItem="b8x-Tn-BcT" firstAttribute="top" secondItem="VIA-Iq-lNq" secondAttribute="top" id="reg-8n-bNb"/>
+                                <constraint firstItem="b8x-Tn-BcT" firstAttribute="leading" secondItem="VIA-Iq-lNq" secondAttribute="leading" id="xjW-91-2bF"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="550" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hM2-aE-ELV">
+                            <rect key="frame" x="0.0" y="52" width="92" height="21"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="550" text="Almost there!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muM-Vl-bmo">
+                            <rect key="frame" x="0.0" y="89" width="92" height="18"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="hM2-aE-ELV" firstAttribute="leading" secondItem="cZt-Px-HkS" secondAttribute="leading" id="6MZ-1A-yoe"/>
+                        <constraint firstItem="VIA-Iq-lNq" firstAttribute="leading" secondItem="cZt-Px-HkS" secondAttribute="leading" id="W2j-AM-9gl"/>
+                        <constraint firstItem="muM-Vl-bmo" firstAttribute="top" secondItem="hM2-aE-ELV" secondAttribute="bottom" constant="16" id="Wva-Td-l7X"/>
+                        <constraint firstAttribute="trailing" secondItem="muM-Vl-bmo" secondAttribute="trailing" id="cPg-uN-rUA"/>
+                        <constraint firstAttribute="trailing" secondItem="hM2-aE-ELV" secondAttribute="trailing" id="gRl-WT-VSU"/>
+                        <constraint firstItem="hM2-aE-ELV" firstAttribute="top" secondItem="VIA-Iq-lNq" secondAttribute="bottom" constant="32" id="juE-MJ-Oz0"/>
+                        <constraint firstAttribute="bottom" secondItem="muM-Vl-bmo" secondAttribute="bottom" id="lWF-hS-RIy"/>
+                        <constraint firstItem="muM-Vl-bmo" firstAttribute="leading" secondItem="cZt-Px-HkS" secondAttribute="leading" id="nYc-rh-LKR"/>
+                        <constraint firstAttribute="trailing" secondItem="VIA-Iq-lNq" secondAttribute="trailing" id="sC2-TT-UqI"/>
+                        <constraint firstItem="VIA-Iq-lNq" firstAttribute="top" secondItem="cZt-Px-HkS" secondAttribute="top" id="vA4-8o-r45"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fwc-aJ-PQv" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cZt-Px-HkS" secondAttribute="bottom" id="4cB-Zz-rKK"/>
+                <constraint firstItem="cZt-Px-HkS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fwc-aJ-PQv" secondAttribute="leading" id="AY0-NS-pDA"/>
+                <constraint firstItem="cZt-Px-HkS" firstAttribute="centerX" secondItem="fwc-aJ-PQv" secondAttribute="centerX" id="I68-Tw-S30"/>
+                <constraint firstItem="fwc-aJ-PQv" firstAttribute="trailing" secondItem="cZt-Px-HkS" secondAttribute="trailing" priority="500" constant="32" id="Tgo-9f-abL"/>
+                <constraint firstItem="cZt-Px-HkS" firstAttribute="leading" secondItem="fwc-aJ-PQv" secondAttribute="leading" priority="500" constant="32" id="VWV-T3-Y9Q"/>
+                <constraint firstItem="fwc-aJ-PQv" firstAttribute="bottom" secondItem="cZt-Px-HkS" secondAttribute="bottom" priority="500" constant="32" id="alC-4l-cpZ"/>
+                <constraint firstItem="cZt-Px-HkS" firstAttribute="centerY" secondItem="fwc-aJ-PQv" secondAttribute="centerY" id="fYK-uh-0aM"/>
+                <constraint firstItem="cZt-Px-HkS" firstAttribute="top" secondItem="fwc-aJ-PQv" secondAttribute="top" priority="500" constant="32" id="gPo-4q-oKx"/>
+                <constraint firstItem="fwc-aJ-PQv" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cZt-Px-HkS" secondAttribute="trailing" id="jdF-d0-Rz4"/>
+                <constraint firstItem="cZt-Px-HkS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fwc-aJ-PQv" secondAttribute="top" id="m2N-Xh-kj7"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fwc-aJ-PQv"/>
+            <connections>
+                <outlet property="activityIndicator" destination="b8x-Tn-BcT" id="DmB-JB-Gkf"/>
+                <outlet property="subtitleLabel" destination="muM-Vl-bmo" id="ELT-yX-qMN"/>
+                <outlet property="titleLabel" destination="hM2-aE-ELV" id="ueD-TA-jjb"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+</document>

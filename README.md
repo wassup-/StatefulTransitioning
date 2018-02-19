@@ -1,6 +1,5 @@
 # StatefulTransitioning
 
-[![CI Status](http://img.shields.io/travis/Tom Knapen/StatefulTransitioning.svg?style=flat)](https://travis-ci.org/Tom Knapen/StatefulTransitioning)
 [![Version](https://img.shields.io/cocoapods/v/StatefulTransitioning.svg?style=flat)](http://cocoapods.org/pods/StatefulTransitioning)
 [![License](https://img.shields.io/cocoapods/l/StatefulTransitioning.svg?style=flat)](http://cocoapods.org/pods/StatefulTransitioning)
 [![Platform](https://img.shields.io/cocoapods/p/StatefulTransitioning.svg?style=flat)](http://cocoapods.org/pods/StatefulTransitioning)
@@ -22,7 +21,7 @@ pod 'StatefulTransitioning'
 
 ## Author
 
-Tom Knapen, tom@appwise.be
+Tom Knapen, tom.knapen@appwise.be
 
 ## License
 
