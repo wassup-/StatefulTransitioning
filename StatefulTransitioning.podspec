@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary          = 'iOS view controller state transitioning.'
 
   s.description      = <<-DESC
-iOS view controller state transitioning.
+This library aims to provide an easy way to transitioning view controllers between different content states.
                        DESC
 
   s.homepage         = 'https://github.com/wassup-/StatefulTransitioning'
