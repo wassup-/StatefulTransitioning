@@ -7,16 +7,14 @@
 
 public typealias TransitionCompletionBlock = () -> Void
 
-public protocol State
-{
+public protocol State {
 	/// Check if `self` compares equal to `other`
 	/// - parameter other: The instance to compare with
 	/// - returns: `true` if `self` and `other` compare equal
  	func compares(equalTo other: Self) -> Bool
 }
 
-public protocol StateTransitioning
-{
+public protocol StateTransitioning {
 	/// The associated state type
 	associatedtype StateType
 
@@ -27,8 +25,7 @@ public protocol StateTransitioning
 	func transition(to state: StateType, animated: Bool, completionHandler: @escaping TransitionCompletionBlock)
 }
 
-public protocol Stateful
-{
+public protocol Stateful {
 	/// The associated state type
 	associatedtype StateType
 

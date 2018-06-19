@@ -8,15 +8,13 @@
 import Foundation
 import UIKit
 
-public enum ViewCategory
-{
+public enum ViewCategory {
 	case empty
 	case loading
 	case error
 }
 
-public protocol DefaultViewControllerStateTransitioning: ViewControllerStateTransitioning, ViewStateViewConfiguration
-{
+public protocol DefaultViewControllerStateTransitioning: ViewControllerStateTransitioning, ViewStateViewConfiguration {
 	/// Returns the view with the specified type for the specified state
 	/// - parameter category: The category to return a view for
 	/// - parameter state: The state to configure the view with
@@ -45,8 +43,7 @@ public protocol DefaultViewControllerStateTransitioning: ViewControllerStateTran
 public protocol CollectionViewControllerStateTransitioning: DefaultViewControllerStateTransitioning { }
 public protocol TableViewControllerStateTransitioning: DefaultViewControllerStateTransitioning { }
 
-private extension ViewCategory
-{
+private extension ViewCategory {
 	/// Returns a fully configured view
 	/// - parameter state: The state to configure the view for
 	/// - parameter configurator: The configurator to configure the view with
@@ -76,27 +73,26 @@ private extension ViewCategory
 		}
 	}
 
-	func removeView(from parent: View)
-	{
+	/// Removes the associated view from `parent`
+	/// - parameter parent: The associated view's parent view
+	func removeView(from parent: View) {
 		let views: [View]
 
 		switch self {
 		case .empty:
-			views = parent.subviews.filter({ $0 is EmptyView })
+			views = parent.subviews.filter { $0 is EmptyView }
 		case .loading:
-			views = parent.subviews.filter({ $0 is LoadingView })
+			views = parent.subviews.filter { $0 is LoadingView }
 		case .error:
-			views = parent.subviews.filter({ $0 is ErrorView })
+			views = parent.subviews.filter { $0 is ErrorView }
 		}
 
 		views.last?.removeFromSuperview()
 	}
 }
 
-public extension DefaultViewControllerStateTransitioning where StateType == ViewState
-{
-	public func view(category: ViewCategory, for state: StateType) -> View?
-	{
+public extension DefaultViewControllerStateTransitioning where StateType == ViewState {
+	public func view(category: ViewCategory, for state: StateType) -> View? {
 		let view = category.view(for: state, configurator: self)
 		view.translatesAutoresizingMaskIntoConstraints = true
 		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -104,8 +100,7 @@ public extension DefaultViewControllerStateTransitioning where StateType == View
 	}
 }
 
-public extension DefaultViewControllerStateTransitioning where Self: BackingViewProvider
-{
+public extension DefaultViewControllerStateTransitioning where Self: BackingViewProvider {
 	// MARK: - Properties
 
 	var stateTransitionAnimationDuration: TimeInterval {
@@ -118,8 +113,7 @@ public extension DefaultViewControllerStateTransitioning where Self: BackingView
 
 	// MARK: - Transitioning
 
-	private func transition(to view: View?, for state: StateType, animated: Bool)
-	{
+	private func transition(to view: View?, for state: StateType, animated: Bool) {
 		guard let view = view else { return }
 
 		view.frame = backingView.bounds
@@ -129,8 +123,7 @@ public extension DefaultViewControllerStateTransitioning where Self: BackingView
 		}
 	}
 
-	private func transition(from category: ViewCategory, for state: StateType, animated: Bool)
-	{
+	private func transition(from category: ViewCategory, for state: StateType, animated: Bool) {
 		transition(animated: animated) { parent in
 			switch category {
 			case .loading:
@@ -145,58 +138,68 @@ public extension DefaultViewControllerStateTransitioning where Self: BackingView
 		}
 	}
 
-	func transition(animated: Bool, animations: @escaping (View) -> Void)
-	{
+	func transition(animated: Bool, animations: @escaping (View) -> Void) {
 		let duration = (animated) ? stateTransitionAnimationDuration : 0.0
 		let options = stateTransitionAnimationOptions
 
-		View.transition(with: backingView,
-						duration: duration,
-						options: options,
-						animations: { animations(self.backingView) },
-						completion: nil)
+		View.transition(
+			with: backingView,
+			duration: duration,
+			options: options,
+			animations: { animations(self.backingView) },
+			completion: nil)
 	}
 
 	// MARK: - Empty
 
-	func showEmptyView(for state: StateType, animated: Bool)
-	{
-		transition(to: view(category: .empty, for: state), for: state, animated: animated)
+	func showEmptyView(for state: StateType, animated: Bool) {
+		transition(
+			to: view(category: .empty, for: state),
+			for: state,
+			animated: animated)
 	}
 
-	func hideEmptyView(for state: StateType, animated: Bool)
-	{
-		transition(from: .empty, for: state, animated: animated)
+	func hideEmptyView(for state: StateType, animated: Bool) {
+		transition(
+			from: .empty,
+			for: state,
+			animated: animated)
 	}
 
 	// MARK: - Loading
 
-	func showObtrusiveLoadingIndicator(for state: StateType, animated: Bool)
-	{
-		transition(to: view(category: .loading, for: state), for: state, animated: animated)
+	func showObtrusiveLoadingIndicator(for state: StateType, animated: Bool) {
+		transition(
+			to: view(category: .loading, for: state),
+			for: state,
+			animated: animated)
 	}
 
-	func hideLoadingIndicator(for state: StateType, animated: Bool)
-	{
-		transition(from: .loading, for: state, animated: animated)
+	func hideLoadingIndicator(for state: StateType, animated: Bool) {
+		transition(
+			from: .loading,
+			for: state,
+			animated: animated)
 	}
 
 	// MARK: - Error
 
-	func showObtrusiveError(_ error: Error, for state: StateType, animated: Bool)
-	{
-		transition(to: view(category: .error, for: state), for: state, animated: animated)
+	func showObtrusiveError(_ error: Error, for state: StateType, animated: Bool) {
+		transition(
+			to: view(category: .error, for: state),
+			for: state,
+			animated: animated)
 	}
 
-	func hideError(for state: StateType, animated: Bool)
-	{
-		transition(from: .error, for: state, animated: animated)
+	func hideError(for state: StateType, animated: Bool) {
+		transition(
+			from: .error,
+			for: state,
+			animated: animated)
 	}
 }
 
-public extension DefaultViewControllerStateTransitioning
-{
+public extension DefaultViewControllerStateTransitioning {
 	func hideNonObtrusiveLoadingIndicator(for state: StateType, animated: Bool) { }
-
 	func hideNonObtrusiveError(for state: StateType, animated: Bool) { }
 }

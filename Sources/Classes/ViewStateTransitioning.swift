@@ -9,8 +9,7 @@ import UIKit
 
 public typealias View = UIView
 
-public protocol ContentState: State
-{
+public protocol ContentState: State {
 	/// Wether or not we are loading content
 	/// - returns: Wether or not we are loading content
 	var isLoading: Bool { get }
@@ -24,8 +23,7 @@ public protocol ContentState: State
 	var error: Error? { get }
 }
 
-public enum ViewState: ContentState
-{
+public enum ViewState: ContentState {
 	/// The loading state
 	indirect case loading(ViewState?)
 
@@ -36,13 +34,15 @@ public enum ViewState: ContentState
 	case content(Error?)
 }
 
-public extension ViewState
-{
-	func compares(equalTo other: ViewState) -> Bool
-	{
+public extension ViewState {
+	func compares(equalTo other: ViewState) -> Bool {
 		switch (self, other) {
-		case (.loading, .loading):
-			return true
+		case let (.loading(lhs), .loading(rhs)):
+			if let lhs = lhs, let rhs = rhs {
+				return lhs.compares(equalTo: rhs)
+			} else {
+				return false
+			}
 		case (.content, .content):
 			return true
 		case (.empty, .empty):

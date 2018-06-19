@@ -9,15 +9,12 @@
 import StatefulTransitioning
 import UIKit
 
-protocol CanLoadContent: Stateful
-{
+protocol CanLoadContent: Stateful {
 	var loadingState: StateType { get }
 }
 
-extension CanLoadContent
-{
-	func startLoading(animated: Bool = true, block: (_ completionHandler: @escaping (StateType) -> Void) -> Void)
-	{
+extension CanLoadContent {
+	func startLoading(animated: Bool = true, block: (_ completionHandler: @escaping (StateType) -> Void) -> Void) {
 		setState(loadingState, animated: animated)
 		block { state in
 			self.setState(state, animated: animated)
@@ -25,76 +22,62 @@ extension CanLoadContent
 	}
 }
 
-enum Fake: Error
-{
+enum Fake: Error {
 	case error
 }
 
-class ViewController: UIViewController, Stateful, DefaultViewControllerStateTransitioning, HasNonObtrusiveLoadingIndicator
-{
+class ViewController: UIViewController, Stateful, DefaultViewControllerStateTransitioning, HasNonObtrusiveLoadingIndicator {
 	typealias StateType = ViewState
 	typealias LoadingIndicatorType = UIActivityIndicatorView
 
 	@IBOutlet weak var nonObtrusiveLoadingIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var nonObtrusiveErrorLabel: UILabel!
 
-	private let stateMachine: StateMachine<StateType> = StateMachine()
-	private lazy var stateTransitioner: ViewControllerStateTransitioner<StateType, ViewController> = ViewControllerStateTransitioner(self)
+	private let stateMachine = StateMachine<StateType>()
+	private lazy var stateTransitioner = ViewControllerStateTransitioner(self)
 
 	var currentState: StateType? {
 		return stateMachine.currentState
 	}
 
-    override func viewDidLoad()
-	{
+    override func viewDidLoad() {
         super.viewDidLoad()
 
 		setState(.empty(nil), animated: false)
 	}
 
-	override func viewDidAppear(_ animated: Bool)
-	{
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
 		refresh()
 	}
 
-	func setState(_ newState: StateType, animated: Bool)
-	{
-		stateMachine.transition(stateTransitioner, to: newState, animated: false, completionHandler: { })
+	func setState(_ newState: StateType, animated: Bool) {
+		stateMachine.transition(stateTransitioner, to: newState, animated: false) { }
 	}
 
-	func showNonObtrusiveError(_ error: Error, for state: ViewState, animated: Bool)
-	{
+	func showNonObtrusiveError(_ error: Error, for state: ViewState, animated: Bool) {
 		nonObtrusiveErrorLabel.text = error.localizedDescription
 		nonObtrusiveErrorLabel.isHidden = false
 	}
 
-	func hideNonObtrusiveError(for state: ViewState, animated: Bool)
-	{
+	func hideNonObtrusiveError(for state: ViewState, animated: Bool) {
 		nonObtrusiveErrorLabel.text = nil
 		nonObtrusiveErrorLabel.isHidden = true
 	}
 
-	func attributedSubtitleForErrorView(state: ViewState) -> NSAttributedString?
-	{
-		if let description = state.error?.localizedDescription {
-			return NSAttributedString(string: description)
-		} else {
-			return nil
-		}
+	func attributedSubtitleForErrorView(state: ViewState) -> NSAttributedString? {
+		return state.error.flatMap { NSAttributedString(string: $0.localizedDescription) }
 	}
 }
 
 var counter: Int = 0
-extension ViewController: CanLoadContent
-{
+extension ViewController: CanLoadContent {
 	var loadingState: ViewState {
 		return .loading(currentState)
 	}
 
-	func refresh()
-	{
+	func refresh() {
 		startLoading { completion in
 			DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
 				switch counter % 4 {

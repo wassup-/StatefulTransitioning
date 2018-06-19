@@ -7,8 +7,7 @@
 
 import Foundation
 
-enum StatefulTransitioning
-{
+enum StatefulTransitioning {
 	static let bundle = Bundle(for: BundleToken.self)
 
 	static let resourceBundle: Bundle = {

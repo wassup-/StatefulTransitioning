@@ -7,22 +7,19 @@
 
 import UIKit
 
-public protocol BackingViewProvider
-{
+public protocol BackingViewProvider {
 	/// The backing view
 	/// - returns: The backing view
 	var backingView: View { get }
 }
 
-extension UIViewController: BackingViewProvider
-{
+extension UIViewController: BackingViewProvider {
 	public var backingView: View {
 		return view
 	}
 }
 
-extension View: BackingViewProvider
-{
+extension View: BackingViewProvider {
 	public var backingView: View {
 		return self
 	}

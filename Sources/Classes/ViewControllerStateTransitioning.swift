@@ -5,8 +5,7 @@
 //  Created by Tom Knapen on 16/02/2018.
 //
 
-public protocol ViewControllerStateTransitioning: class
-{
+public protocol ViewControllerStateTransitioning: class {
 	/// The associated state type
 	associatedtype StateType
 
@@ -65,13 +64,11 @@ public class ViewControllerStateTransitioner<StateType: ContentState, Controller
 	where ControllerType.StateType == StateType
 {
 	weak var controller: ControllerType?
-	public init(_ controller: ControllerType)
-	{
+	public init(_ controller: ControllerType) {
 		self.controller = controller
 	}
 
-	public func transition(to state: StateType, animated: Bool, completionHandler: @escaping TransitionCompletionBlock)
-	{
+	public func transition(to state: StateType, animated: Bool, completionHandler: @escaping TransitionCompletionBlock) {
 		if let controller = controller {
 			controller.willTransition(to: state, animated: animated)
 
@@ -81,15 +78,15 @@ public class ViewControllerStateTransitioner<StateType: ContentState, Controller
 
 			switch (state.hasContent, state.isLoading, state.error) {
 			// CONTENT
-			case (true, true, .some(let error)):
+			case let (true, true, .some(error)):
 				controller.showNonObtrusiveLoadingIndicator(for: state, animated: animated)
 				controller.showNonObtrusiveError(error, for: state, animated: animated)
 			case (true, true, .none):
 				controller.showNonObtrusiveLoadingIndicator(for: state, animated: animated)
-			case (true, false, .some(let error)):
+			case let (true, false, .some(error)):
 				controller.showNonObtrusiveError(error, for: state, animated: animated)
 			/// NO CONTENT
-			case (false, true, let error):
+			case let (false, true, error):
 				if let error = error {
 					controller.showNonObtrusiveLoadingIndicator(for: state, animated: animated)
 					controller.showObtrusiveError(error, for: state, animated: animated)
@@ -98,7 +95,7 @@ public class ViewControllerStateTransitioner<StateType: ContentState, Controller
 				}
 			case (false, false, .none):
 				controller.showEmptyView(for: state, animated: animated)
-			case (false, false, .some(let error)):
+			case let (false, false, .some(error)):
 				controller.showObtrusiveError(error, for: state, animated: animated)
 			default:
 				break
@@ -111,8 +108,7 @@ public class ViewControllerStateTransitioner<StateType: ContentState, Controller
 	}
 }
 
-public extension ViewControllerStateTransitioning
-{
+public extension ViewControllerStateTransitioning {
 	func willTransition(to state: StateType, animated: Bool) { }
 	func didTransition(to state: StateType, animated: Bool) { }
 

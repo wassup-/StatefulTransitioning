@@ -7,8 +7,7 @@
 
 import Dispatch
 
-public protocol HasStateMachine
-{
+public protocol HasStateMachine {
 	/// The associated state type
 	associatedtype StateType: State
 
@@ -16,29 +15,29 @@ public protocol HasStateMachine
 	var stateMachine: StateMachine<StateType> { get }
 }
 
-public extension Stateful where Self: HasStateMachine
-{
+public extension Stateful where Self: HasStateMachine {
 	var currentState: StateType? {
 		return stateMachine.currentState
 	}
 }
 
-public final class StateMachine<StateType: State>
-{
+public final class StateMachine<StateType: State> {
 	private let queue = DispatchQueue(label: "be.appwise.statemachine.queue")
 
-	public var currentState: StateType?
+	private(set) public var currentState: StateType?
 
 	public init() { }
 
-	private func suspendQueue()
-	{
+	private func suspendQueue() {
 		queue.suspend()
 	}
 
-	private func resumeQueue()
-	{
+	private func resumeQueue() {
 		queue.resume()
+	}
+
+	public func setState(_ newState: StateType?) {
+		currentState = newState
 	}
 
 	public func transition<TargetType>(_ target: TargetType,
@@ -48,11 +47,11 @@ public final class StateMachine<StateType: State>
 		where TargetType: StateTransitioning,
 		TargetType.StateType == StateType
 	{
-		queue.async { [weak welf = self] in
-			guard let sself = welf, sself.currentState?.compares(equalTo: newState) != true else { return }
+		queue.async { [weak self] in
+			guard let sself = self, sself.currentState?.compares(equalTo: newState) != true else { return }
 
 			sself.suspendQueue()
-			sself.currentState = newState
+			sself.setState(newState)
 
 			DispatchQueue.main.async {
 				target.transition(to: newState, animated: animated) {

@@ -7,8 +7,7 @@
 
 import UIKit.UIActivityIndicatorView
 
-public protocol LoadingIndicatorProtocol
-{
+public protocol LoadingAnimatable {
 	/// Starts the loading animation
 	func startLoadingAnimation()
 
@@ -16,35 +15,29 @@ public protocol LoadingIndicatorProtocol
 	func stopLoadingAnimation()
 }
 
-extension UIActivityIndicatorView: LoadingIndicatorProtocol
-{
-	public func startLoadingAnimation()
-	{
+extension UIActivityIndicatorView: LoadingAnimatable {
+	public func startLoadingAnimation() {
 		startAnimating()
 		isHidden = false
 	}
 
-	public func stopLoadingAnimation()
-	{
+	public func stopLoadingAnimation() {
 		stopAnimating()
 	}
 }
 
-public protocol HasNonObtrusiveLoadingIndicator
-{
-	associatedtype LoadingIndicatorType: LoadingIndicatorProtocol
+public protocol HasNonObtrusiveLoadingIndicator {
+	associatedtype LoadingIndicatorType: LoadingAnimatable
+	/// The non-obtrusive loading indicator
 	var nonObtrusiveLoadingIndicator: LoadingIndicatorType! { get }
 }
 
-public extension DefaultViewControllerStateTransitioning where Self: HasNonObtrusiveLoadingIndicator
-{
-	func showNonObtrusiveLoadingIndicator(for state: StateType, animated: Bool)
-	{
+public extension DefaultViewControllerStateTransitioning where Self: HasNonObtrusiveLoadingIndicator {
+	func showNonObtrusiveLoadingIndicator(for state: StateType, animated: Bool) {
 		nonObtrusiveLoadingIndicator.startLoadingAnimation()
 	}
 
-	func hideNonObtrusiveLoadingIndicator(for state: StateType, animated: Bool)
-	{
+	func hideNonObtrusiveLoadingIndicator(for state: StateType, animated: Bool) {
 		nonObtrusiveLoadingIndicator.stopLoadingAnimation()
 	}
 }

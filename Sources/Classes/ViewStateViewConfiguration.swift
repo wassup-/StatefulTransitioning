@@ -8,8 +8,7 @@
 import Foundation.NSAttributedString
 import UIKit.UIImage
 
-public protocol ViewStateViewConfiguration
-{
+public protocol ViewStateViewConfiguration {
 	/// The associated state type
 	associatedtype StateType
 
@@ -54,49 +53,42 @@ public protocol ViewStateViewConfiguration
 	func attributedSubtitleForErrorView(state: StateType) -> NSAttributedString?
 }
 
-public extension ViewStateViewConfiguration where StateType == ViewState
-{
-	func imageForEmptyView(state: StateType) -> UIImage?
-	{
-		return UIImage(named: "ic_empty", in: StatefulTransitioning.resourceBundle, compatibleWith: nil)
+public extension ViewStateViewConfiguration where StateType == ViewState {
+	func imageForEmptyView(state: StateType) -> UIImage? {
+		return UIImage(
+			named: "ic_empty",
+			in: StatefulTransitioning.resourceBundle,
+			compatibleWith: nil)
 	}
 
-	func attributedTitleForEmptyView(state: StateType) -> NSAttributedString?
-	{
+	func attributedTitleForEmptyView(state: StateType) -> NSAttributedString? {
 		return NSAttributedString(string: "All done!")
 	}
 
-	func attributedSubtitleForEmptyView(state: StateType) -> NSAttributedString?
-	{
+	func attributedSubtitleForEmptyView(state: StateType) -> NSAttributedString? {
 		return NSAttributedString(string: "Clear screens ahead")
 	}
 
-	func attributedTitleForLoadingView(state: StateType) -> NSAttributedString?
-	{
+	func attributedTitleForLoadingView(state: StateType) -> NSAttributedString? {
 		return NSAttributedString(string: "Loading")
 	}
 
-	func attributedSubtitleForLoadingView(state: StateType) -> NSAttributedString?
-	{
+	func attributedSubtitleForLoadingView(state: StateType) -> NSAttributedString? {
 		return NSAttributedString(string: "Almost there...")
 	}
 
-	func imageForErrorView(state: StateType) -> UIImage?
-	{
-		return UIImage(named: "ic_error", in: StatefulTransitioning.resourceBundle, compatibleWith: nil)
+	func imageForErrorView(state: StateType) -> UIImage? {
+		return UIImage(
+			named: "ic_error",
+			in: StatefulTransitioning.resourceBundle,
+			compatibleWith: nil)
 	}
 
-	func attributedTitleForErrorView(state: StateType) -> NSAttributedString?
-	{
+	func attributedTitleForErrorView(state: StateType) -> NSAttributedString? {
 		return NSAttributedString(string: "Whoops!")
 	}
 
-	func attributedSubtitleForErrorView(state: StateType) -> NSAttributedString?
-	{
-		if let error = state.error {
-			return NSAttributedString(string: error.localizedDescription)
-		} else {
-			return nil
-		}
+	func attributedSubtitleForErrorView(state: StateType) -> NSAttributedString? {
+		return state.error.flatMap { NSAttributedString(string: $0.localizedDescription) }
 	}
 }
