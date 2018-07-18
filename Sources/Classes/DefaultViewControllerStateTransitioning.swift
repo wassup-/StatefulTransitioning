@@ -116,7 +116,11 @@ public extension DefaultViewControllerStateTransitioning where Self: BackingView
 	private func transition(to view: View?, for state: StateType, animated: Bool) {
 		guard let view = view else { return }
 
-		view.frame = backingView.bounds
+		// we might be dealing with a `UIScrollView`
+		// so fix the origin to (0, 0)
+		// this is especially important when adding to a `UITableView` that's using pull-to-refresh
+		// because that will change the tablle view's `bounds` property
+		view.frame = CGRect(x: 0, y: 0, width: backingView.bounds.width, height: backingView.bounds.height)
 
 		transition(animated: animated) { parent in
 			parent.addSubview(view)

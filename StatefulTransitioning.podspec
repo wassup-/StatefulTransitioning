@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'StatefulTransitioning'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'iOS view controller state transitioning.'
 
   s.description      = <<-DESC
